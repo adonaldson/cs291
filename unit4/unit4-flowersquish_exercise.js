@@ -43,11 +43,19 @@ function fillScene() {
 	// The petals should be squished and be 1/4 as thick as wide
 	// and they should be tilted 20 degrees up from the position in the previous exercise
 
-	var cylinder = new THREE.Mesh( cylGeom, petalMaterial );
-	var petal = new THREE.Object3D();
-	petal.add( cylinder );
+  for (var ii=0; ii<24; ii++) {
+    var cylinder = new THREE.Mesh( cylGeom, petalMaterial );
+    cylinder.position.y = 200 + 20;
+    cylinder.position.z = 120/2;
+    cylinder.rotation.x = 70 * Math.PI/180;
 
-	flower.add( petal );
+    cylinder.scale.z = 0.25;
+
+    var petal = new THREE.Object3D();
+    petal.rotation.y = (360 / 24) * ii * Math.PI/180;
+    petal.add( cylinder );
+    flower.add( petal );
+  }
 
 	// Rest of the flower
 	var stamenMaterial = new THREE.MeshLambertMaterial( { color: 0x333310 } );
